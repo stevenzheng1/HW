@@ -1,0 +1,177 @@
+\section{Time-series predictability of returns and dividend growth}
+
+
+\begin{answer}[Part a]
+Download monthly returns with and without dividends from CRSP in WRDS for the period 1945.01-2021.12.
+\end{answer}
+I use the stock market indexes from CRSP. Alternatively, I could have used the monthly stock file and aggregated up prices, dividends and returns, but \cite*{englebook} say the two methods are similar so I use the more convenient one.
+
+\begin{answer}[Part b]
+Compute monthly dividends.
+\end{answer}
+CRSP gives total returns $R_t$ and price returns $Rx_t$ at time $t$ on the market portfolio. I compute monthly dividends as
+\begin{align} 
+D_t = \frac{R_t - Rx_t }{P_{t-1}}
+\end{align}
+where $P$ is the total market value. This follows the literature.
+
+\begin{answer}[Part c ]
+Aggregate dividends within a year (from January to December) by investing them into cash or investing them into the aggregate stock market.
+\end{answer}
+I follow \cite{koijen2011} and \cite{chen2009jfe} in aggregating dividends. Specifically, consider three ways of reinvesting dividends: (1) not reinvesting them, (2) reinvesting them into cash (at the risk-free rate), and (3) reinvesting them into the aggregate stock market. The notation in this section follows \cite{chen2009jfe}. 
+
+Let $D_t$ denote the dividend received in month $t$. With no reinvestment, the annual dividend is just $D_t^{12,\text{no}} =\sum_{i=0}^{11} D_{t-i}$.
+
+With any reinvestment, the dividend received in (the end of) December cannot be reinvested to earn a return in the same year. But any dividend received earlier in the year can be. For example, the November dividend can be reinvested to earn the market return or in cash (the risk-free rate) for December. And the October dividend can be reinvested to earn the November and December returns. To that end, introduce the notation  $D_{t,t-i}$ as the time $t$ value of the dividend received at month $t-1$. For dividends reinvested in cash with (net) risk-free return $R^f_t$, we have
+\begin{align}
+D_{t,t-i}^{\text{c}}=\begin{cases}
+D_{t-i}\prod_{j=1}^{i}(1+R^f_{t-i+j}) & \text{, if }i>0\\
+D_{t} & \text{, if }i=0.
+\end{cases}
+\end{align}
+Similarly, for dividends reinvested in the market with return $R^m_t$, we have
+\begin{align}
+D_{t,t-i}^{\text{m}}=\begin{cases}
+D_{t-i}\prod_{j=1}^{i}(1+R^m_{t-i+j}) & \text{, if }i>0\\
+D_{t} & \text{, if }i=0.
+\end{cases}
+\end{align}
+Finally, the annual dividend is constructed as the sum $D^{12,\text{c}}_t = \sum_{i=0}^{11} D^{\text{c}}_{t,t-i}$ and $D^{12,\text{m}}_t = \sum_{i=0}^{11} D^{\text{m}}_{t,t-i}$.
+
+
+\begin{answer}[Part d ]
+Construct non-overlapping annual returns, annual dividend growth, and the log price- dividend ratio for cash-invested (i.e. in the risk-free) and for market-invested dividends. Compute returns and dividend growth in geometric terms. Report the mean and volatility of dividend growth from both methods. Explain the difference.
+\end{answer}
+
+Table \ref{tab:div} shows the mean and standard deviation of dividend growth under the three reinvestment methods. The three methods have similar means but dividends reinvested in the market portfolio lead to a much more volatile dividend growth process. Intuitively (and written more precisely in \cite{koijen2011} and \cite{chen2009jfe}) reinvesting dividends into the market portfolios imparts some of the properties of returns to the dividend growth process. The implication is the following: since dividend yields should predict returns with a positive sign and predict dividend growth with a negative sign, and since stock returns are more volatile than dividend growth, reinvesting dividends in the market portfolio leads to unpredictable dividend growth.
+
+%===========================================
+\medskip
+\begin{table}[H]
+\caption{\textbf{Mean and Standard Deviation of Dividend Growth}}
+\vspace*{-3ex}
+ \label{tab:div}
+\begin{center}  
+\normalsize
+\begin{tabular*}{\hsize}{@{\hskip\tabcolsep\extracolsep\fill}l*{3}{c}}
+ \toprule\toprule \\[-3ex]
+
+Reinvestment Method for Dividend Growth    & Mean  & Standard Deviation \\
+\midrule
+None       & 8.39   &  7.39     \\[0.5ex]   
+Cash      & 8.41   &  7.67      \\[0.5ex]   
+Market portfolio      & 8.87   &  13.45      \\[0.5ex]   
+\bottomrule\bottomrule
+\end{tabular*}
+\end{center}
+%\begin{minipage}[c]{\textwidth} 
+% \setstretch{1.00}\small 
+% \end{minipage}
+\begin{minipage}[c]{\textwidth} \setstretch{1.00} \small 
+\textbf{Note:} Units are in percent and annualized.
+\end{minipage}
+\end{table}
+%============================================
+
+
+\begin{answer}[Part e]
+Continue with cash-invested dividends. Predict returns and dividend growth using the lagged log price-dividend ratio:
+\begin{align}
+r_{t+1} &= a_r + b_r pd_t + \epsilon_{t+1}^r  \label{eq:2e1}\\
+\Delta d_{t+1} &= a_d + b_d pd_t + \epsilon_{t+1}^d. \label{eq:2e2}
+\end{align}
+Report the coefficients and the R-squared values. Repeated this exercise for the subsamples from 1945--1990 and 1990-2020. Try to explain the differences.
+\end{answer}
+
+Table \ref{tab:reg} reports the coefficients and R$^2$ for each regression and each sample. Price to dividend ratios have a negative sign in predicting returns and dividend growth is not predictable. Return predictability was higher in the early (post-war) sample as mentioned in \cite{koijen2011} and \cite{chen2009jfe}. Interestingly, return predictability has fallen in the late sample. Possible reasons why include a break in price-dividend ratio \citep{lettauvn2007}, the global financial crisis and subsequent zero lower bound period.
+
+%============================================================================
+\medskip
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+
+\begin{table}[H]
+\caption{\textbf{Regressions} }
+ \label{tab:reg}
+\centering
+%\scalebox{1}{
+\vspace*{-1ex}
+\begin{tabular*}{\hsize}{@{\hskip\tabcolsep\extracolsep\fill}l*{3}{c}}
+
+\toprule\toprule
+                    &\multicolumn{1}{c}{(1)}  &\multicolumn{1}{c}{(2)} &\multicolumn{1}{c}{(3)}        \\ [0.25em]
+                    &\multicolumn{1}{c}{Full Sample}  &\multicolumn{1}{c}{Early Sample (1945--1990)}  &\multicolumn{1}{c}{Late Sample (1990-2020)}        \\ 
+\midrule \\
+
+
+\multicolumn{4}{c}{{\underline{\em Return Regression}}} \\ [0.5em] %$r_{t+1} = a_r + b_r pd_t + \epsilon_{t+1}^r $} \\ 
+$a_r$          &     0.42     & 0.91    & 0.71\\
+                    &     (0.15)  & (0.27)   & (0.45)    \\[0.5em]
+$b_r$          &       -0.09    & -0.25 & -0.16    \\
+                    &     (0.04)  & (0.09)   & (0.12)    \\[0.5em]
+R$^2$      &       0.06       & 0.16 & 0.06 \\ [1em]
+
+\multicolumn{4}{c}{ {\underline{\em Dividend Growth Regression }}} \\ [0.5em]% $\Delta d_{t+1} = a_d + b_d pd_t + \epsilon_{t+1}^d$ } \\ 
+
+$a_d$          &     0.16     & 0.13    & 0.01\\
+                    &     (0.07)  & (0.11)   & (0.22)    \\[0.5em]
+$b_d$          &       -0.02    & -0.01 & 0.01    \\
+                    &     (0.02)  & (0.04)   & (0.06)    \\[0.5em]
+R$^2$      &       0.02       & 0.00 & 0.00  \\
+
+
+\bottomrule\bottomrule
+
+
+\end{tabular*}
+%}
+\begin{minipage}[c]{\textwidth} \setstretch{1.00} \small \medskip
+\textbf{Note:} 
+\end{minipage}
+\end{table}
+%============================================================================
+
+
+\begin{answer}[Part f]
+Start from the Campbell and Shiller identity and estimate the equation
+\begin{align}
+pd_{t+1} = a_{pd} + \phi pd_t + \epsilon_{t+1}^{pd} \label{eq:2f}
+\end{align}
+We can obtain a variance decomposition of the log price-dividend ratio via:
+\begin{align}
+\text{Var} (pd_t) = \text{Cov} \left( \sum_{s=1}^\infty \rho^{s-1} \mathbb{E}_t [\Delta d_{t+s} ], pd_t \right) 
++ \text{Cov} \left( - \sum_{s=0}^\infty \rho^{s-1} \mathbb{E}_t [r_{t+s} ], pd_t \right) \label{eq:2f}
+\end{align}
+Divide both sides by $Var(pd_t)$ so that we can estimate how much of the variation in the
+log price-dividend ratio is due to discount rate news and cash flow news. Comment on the economic interpretation of the results.
+\end{answer}
+
+Borrowing notation from \cite{cochrane2008}, I divide through \eqref{eq:2f} by the left hand side to get the variance decomposition in terms of regression coefficients
+\begin{align} 1 = \beta \left( \sum_{s=1}^\infty \rho^{s-1}\Delta d_{t+s} , pd_t \right)  - \beta \left( \sum_{s=0}^\infty \rho^{s-1}r_{t+s} , pd_t \right).
+\end{align}
+The second term is the regression coefficient of discount rates on the price-dividend ratio. Following the dynamics in \eqref{eq:2e1}--\eqref{eq:2f}, we have that
+\begin{align}
+\beta \left( \sum_{s=0}^\infty \rho^{s-1}\Delta r_{t+s} , pd_t \right)  &= \sum_{s=1}^\infty \rho^{s-1} \beta (r_{t+s},pd_t ) \\
+&= \sum_{s=1}^\infty \rho^{s-1} \phi^{s-1} b_r \\
+&= \frac{b_r}{1-\rho \phi} \\
+&= b_r^{lr}.
+\end{align}
+Similarly, the first term is the regression of cash flows on the price-dividend ratio, and we get the similar expression for the first term which we'll call $b_d^{lr}$. 
+
+In the code, I estimate $\rho \approx 0.97$ and $\phi\approx 0.96$ which leads to $|b_r^{lr}| \approx 1.33$ and $|b_d^{lr}| \approx 0.34$. I report the absolute value of the coefficients just to make things comparable to \cite{cochrane2008} who uses dividend yields and $dp_t = - pd_t$. The takeaway is that most of the variation in price-dividend ratios comes from discount rates. 
+
+
+\begin{answer}[Part g]
+The present-value identity implies restrictions between $b_r$, $b_d$, and $\phi$. Derive the connection between the coefficients.
+\end{answer}
+
+Start with the Campbell-Shiller return approximation
+\begin{align}
+r_{t+1} = \rho pd_{t+1} + \Delta d_{t+1} - pd_t
+\end{align}
+then plug in \eqref{eq:2e1}, \eqref{eq:2e2} and \eqref{eq:2f}, assuming data are demeaned, and take time $t$ expectations:
+\begin{align}
+b_{r}pd_{t}+\epsilon_{t+1}^{r}	&=\rho\left[\phi pd_{t}+\epsilon_{t+1}^{pd}\right]+\left[b_{d}pd_{t}+\epsilon_{t+1}^{d}\right]-pd_{t} \\
+b_{r}pd_{t}	&=\rho\phi pd_{t}+b_{d}pd_{t}-pd_{t}\\
+b_{r}	&=\rho\phi+b_{d}-1.
+\end{align}
+Note the signs are slightly different than \cite{cochrane2008} since he uses dividend yield and we used price-dividend ratio.

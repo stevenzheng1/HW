@@ -1,0 +1,37 @@
+%-------------------------------%
+% Add / Delete commands and packages
+% TODO: Add / Delete here as you need
+%-------------------------------%
+\usepackage{amsmath,amssymb,bm}
+
+\usepackage[large, bf]{caption}
+\usepackage[FIGTOPCAP]{subfigure}
+\usepackage{booktabs} % To thicken table lines
+\usepackage{natbib}
+\bibpunct{(}{)}{;}{a}{,}{,}
+\def\citeapos#1{\citeauthor{#1}'s (\citeyear{#1})}
+\usepackage{float}
+
+\parskip 0ex  %Vertical distance between paragraphs, in "ex"s
+\parindent 20pt
+\interfootnotelinepenalty=10000
+
+\usepackage[pdftex]{hyperref}
+\hypersetup{colorlinks, citecolor=black, filecolor=blue, linkcolor=blue, urlcolor=blue}
+
+\usepackage{setspace}
+
+
+\newcommand{\KL}{\mathrm{KL}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\T}{\top}
+
+\newcommand{\expdist}[2]{%
+        \normalfont{\textsc{Exp}}(#1, #2)%
+    }
+\newcommand{\expparam}{\bm \lambda}
+\newcommand{\Expparam}{\bm \Lambda}
+\newcommand{\natparam}{\bm \eta}
+\newcommand{\Natparam}{\bm H}
+\newcommand{\sufstat}{\bm u}

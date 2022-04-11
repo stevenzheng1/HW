@@ -1,0 +1,129 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+We have
+\begin_inset Formula 
+\[
+dp_{t+1}=\phi_{0}+\phi_{1}dp_{t}+v_{t+1}
+\]
+
+\end_inset
+
+ and 
+\begin_inset Formula 
+\[
+dp_{t}=-\frac{k}{1-\rho}-\frac{\mu_{t}}{1-\rho b}
+\]
+
+\end_inset
+
+so then
+\begin_inset Formula 
+\begin{align*}
+dp_{t+1} & =\phi_{0}+\phi_{1}dp_{t}+v_{t+1}\\
+\iff-\frac{k}{1-\rho}-\frac{\mu_{t+1}}{1-\rho b} & =\phi_{0}+\phi_{1}\left[-\frac{k}{1-\rho}-\frac{\mu_{t}}{1-\rho b}\right]+v_{t+1}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+1e
+\end_layout
+
+\begin_layout Standard
+Start from (24) and sub in (21) and (12)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+r_{t+1} & =\Delta d_{t+1}-\rho dp_{t+1}+k+dp_{t}\\
+ & =\left[-dp_{t}(1-\rho b)-\frac{k(1-\rho b)}{1-\rho}+\varepsilon_{t+1}^{d}\right]-\rho\left[\frac{k(b-1)}{1-\rho}+bdp_{t}-\frac{v_{t+1}}{1-\rho b}\right]+k+dp_{t}\\
+ & =\left[k-\frac{k(1-\rho b)}{1-\rho}-\rho\frac{k(b-1)}{1-\rho}\right]+\left[1-(1-\rho b)-\rho b\right]dp_{t}+\left[\varepsilon_{t+1}^{d}+\frac{\rho v_{t+1}}{1-\rho b}\right]
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

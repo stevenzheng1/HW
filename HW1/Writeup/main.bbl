@@ -1,0 +1,46 @@
+\begin{thebibliography}{7}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Bali et~al.(2016)Bali, Engle, and Murray]{englebook}
+Turan Bali, Robert Engle, and Scott Murray.
+\newblock The market price of fiscal uncertainty.
+\newblock \emph{Wiley}, 2016.
+
+\bibitem[Chen(2009)]{chen2009jfe}
+Long Chen.
+\newblock On the reversal of return and dividend growth predictability: A tale
+  of two periods.
+\newblock \emph{Journal of Financial Economics}, 2009.
+
+\bibitem[Cochrane(2008)]{cochrane2008}
+John~H. Cochrane.
+\newblock {The Dog That Did Not Bark: A Defense of Return Predictability}.
+\newblock \emph{The Review of Financial Studies}, 2008.
+
+\bibitem[Koijen and Van~Nieuwerburgh(2011)]{koijen2011}
+Ralph~S.J. Koijen and Stijn Van~Nieuwerburgh.
+\newblock Predictability of returns and cash flows.
+\newblock \emph{Annual Review of Financial Economics}, 2011.
+
+\bibitem[Lettau and Van~Nieuwerburgh(2007)]{lettauvn2007}
+Martin Lettau and Stijn Van~Nieuwerburgh.
+\newblock {Reconciling the Return Predictability Evidence: The Review of
+  Financial Studies: Reconciling the Return Predictability Evidence }.
+\newblock \emph{The Review of Financial Studies}, 2007.
+
+\bibitem[Mankiw and Shapiro(1986)]{mankiwshapiro1986}
+N.~Gregory Mankiw and Matthew~D. Shapiro.
+\newblock {Do We Reject Too Often? Small Sample Properties of Tests of Rational
+  Expectations Models}.
+\newblock \emph{Economics Letters}, 1986.
+
+\bibitem[Stambaugh(1999)]{stambaugh1999}
+Robert~F. Stambaugh.
+\newblock Predictive regressions.
+\newblock \emph{Journal of Financial Economics}, 1999.
+
+\end{thebibliography}

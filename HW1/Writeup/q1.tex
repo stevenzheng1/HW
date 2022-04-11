@@ -1,0 +1,166 @@
+\section{Paper and Pencil Question}
+
+
+\begin{answer}[Part a]
+Consider a world in which a slow-moving state variable $\mu_t$ drives expected dividend growth:
+\begin{align}
+    r_{t+1} &= \varepsilon_{t+1}^r \label{eq:1a1} \\
+    \Delta d_{t+1} &= \mu_t + \varepsilon_{t+1}^d \label {eq:1a2} \\
+    \mu_{t+1} &= b \mu_t + v_{t+1}. \label{eq:1a3}
+\end{align}
+All variables are demeaned logs. $\varepsilon_{t+1}^i, i\in \{r,d\}$ are white noise.
+\end{answer}
+No question, great!
+
+\begin{answer}[Part b]
+Use the Campbell-Shiller present value identity to derive an expression for the log dividend yield.
+\end{answer}
+Start with the result for dividend yield in slide 62 and substituting in the above dynamics,
+\begin{align}
+    dp_t &= -\frac{k}{1-\rho} + \sum_{j=0}^\infty \rho^j r_{t+j+1} - \sum_{j=0}^\infty \Delta d_{t+j+1} \\
+    &= -\frac{k}{1-\rho} + \sum_{j=0}^\infty \rho^j \varepsilon_{t+1+j}^r - \sum_{j=0}^\infty \mu_{t+j} - \sum_{j=0}^\infty \varepsilon_{t+j+1}^d.
+\end{align}
+Since the identity holds ex-post and ex-ante, take conditional expectations and note that we have white noise terms
+\begin{align}
+    dp_t &= -\frac{k}{1-\rho} - \mathbb{E}_t \sum_{j=0}^\infty \rho^j \mu_{t+j} \\
+    &= -\frac{k}{1-\rho} - \frac{\mu_t}{1-\rho b}. \label{eq:dp}
+\end{align}
+The (log) dividend yield depends on a constant term and a time-varying component, where the latter depends on expected dividend growth $\mu_t$.
+
+\pagebreak
+\begin{answer}[Part c]
+Compute the AR(1) coefficient for the log dividend yield $dp_t$
+\begin{align}
+    dp_{t+1} = \phi_0 + \phi_1 dp_t + \nu_{t+1}. \label{eq:1c}
+\end{align}
+\end{answer}
+Notice that from \eqref{eq:dp} the dividend yield depends on expected dividend growth, which itself is an AR(1) with coefficient $b$. So let's ``force" dividend yield to also have an AR(1) with coefficient $\phi_1=b$ and see if that works,
+\begin{align}
+    dp_{t+1} - bdp_t &= -\frac{k}{1-\rho} - \frac{\mu_{t+1}}{1-\rho b} - b\left[ -\frac{k}{1-\rho} - \frac{\mu_t}{1-\rho b} \right] \\
+     &=  \frac{k}{1-\rho}  \left[ b-1 \right] - \frac{1}{1-\rho b} \left[ \mu_{t+1} - b\mu_t \right] \\
+     &=  \frac{k}{1-\rho}  \left[ b-1 \right] - \frac{1}{1-\rho b} \left[ v_{t+1} \right] \label{eq:11}\\
+     \iff dp_{t+1} &= \underset{\phi_0}{\underbrace{\frac{k}{1-\rho}  \left[ b-1 \right]}} + \underset{\phi_1}{\underbrace{b}}dp_t - \underset{\nu_{t+1}}{\underbrace{\frac{1}{1-\rho b} \left[ v_{t+1} \right]}} \label{eq:dpnew}
+\end{align}
+where we used \eqref{eq:1a3} in \eqref{eq:11}. So we have
+\begin{align}
+    \phi_0 &= \frac{k}{1-\rho} \left[ b-1 \right] \\
+    \phi_1 &= b \\
+    \nu_{t+1} &= -\frac{1}{1-\rho b} \left[v_{t+1} \right],
+\end{align}
+where $\nu_t$ is a composite error term.
+
+\begin{answer}[Part d]
+Next, derive an expression for the coefficients in the following regression of real log dividend growth on the log dividend yield:
+\begin{align}
+    \Delta d_{t+1} = a_d + b_d dp_t + u_{t+1}^d. \label{eq:1d}
+\end{align}
+\end{answer}
+Rewrite \eqref{eq:dp} for $\mu$ 
+\begin{align}
+    dp_t &= -\frac{k}{1-\rho} - \frac{\mu_t}{1-\rho b} \\
+    \iff \frac{\mu_t}{1-\rho b} &= -dp_t - \frac{k}{1-\rho} \\
+    \iff \mu_t &= -dp_t (1-\rho b) - \frac{k(1-\rho b)}{1-\rho}
+\end{align}
+then sub into dividend growth dynamics \eqref{eq:1a2}
+\begin{align}
+    \Delta d_{t+1} &= \mu_t + \varepsilon_{t+1}^d \\
+                   &=  -dp_t (1-\rho b) - \frac{k(1-\rho b)}{1-\rho} + \varepsilon_{t+1}^d \label{eq:dnew}
+\end{align}
+so we have
+\begin{align}
+    a_d &= -\frac{k(1-\rho b)}{1-\rho} \\
+    b_d &= -(1-\rho b).
+\end{align}
+Notice that $\rho b <1$ so $b_d <0$, which means that higher dividend yields are followed by lower dividend growth.
+
+\begin{answer}[Part e]
+Next, derive an expression for the coefficients in the following regression of returns on the log dividend yield:
+\begin{align}
+    r_{t+1} = a_r + b_r dp_t + u_{t+1}^r.
+\end{align}
+\end{answer}
+Intuitively, from the dynamics \eqref{eq:1a1} there is no predictability in returns, so our end answer is going to be that $a_r=b_r=0$ and $u^r_{t+1}$ is some composite error term that's just white noise. 
+
+More formally, start with the Campbell-Shiller approximation of log returns from slide 60, then substitute in \eqref{eq:dnew} and \eqref{eq:dpnew}, and collect terms
+\begin{align}
+r_{t+1}	&=\Delta d_{t+1}-\rho dp_{t+1}+k+dp_{t} \\
+	&=\left[-dp_{t}(1-\rho b)-\frac{k(1-\rho b)}{1-\rho}+\varepsilon_{t+1}^{d}\right]-\rho\left[\frac{k(b-1)}{1-\rho}+bdp_{t}-\frac{v_{t+1}}{1-\rho b}\right]+k+dp_{t} \\
+	&=\left[k-\frac{k(1-\rho b)}{1-\rho}-\rho\frac{k(b-1)}{1-\rho}\right]+\left[1-(1-\rho b)-\rho b\right]dp_{t}+\left[\varepsilon_{t+1}^{d}+\frac{\rho v_{t+1}}{1-\rho b}\right],
+\end{align}
+so we have
+\begin{align}
+    a_{r}	&=k-\frac{k(1-\rho b)}{1-\rho}-\rho\frac{k(b-1)}{1-\rho}=0 \\
+    b_{r}	&=1-(1-\rho b)-\rho b=0 \\
+    u_{t+1}^{r}	&=\varepsilon_{t+1}^{d}+\frac{\rho v_{t+1}}{1-\rho b}
+\end{align}
+so to conclude, we match our intuition that returns are not predictable (since it's just a combination of forecast errors):
+\begin{align}
+r_{t+1}=\varepsilon_{t+1}^{d}+\frac{\rho v_{t+1}}{1-\rho b}. \label{eq:ret}
+\end{align}
+
+
+\begin{answer}[Part f]
+Derive a closed-form expression using these parameters for Campbell’s decomposition of the variance of return innovations. Recall that
+\begin{align}
+    r_t - \mathbb{E}_{t-1}[r_t] &= ( \mathbb{E}_t - \mathbb{E}_{t-1})
+    \left[ \sum_{j=0}^{\infty} \rho^j \Delta d_{t+j} - \sum_{j=1}^\infty \rho^j r_{t+j} \right] \\
+    &= N_{\text{DR}} + N_{\text{CF}},
+\end{align}
+where the first part is CF news and the second part is DR news. The CF/DR decomposition of the variance is then given by:
+\begin{align}
+    \text{Var} [r_t - \mathbb{E}_{t-1} [r_t]] = \text{Var}[N_{\text{CF}}] + \text{Var} [N_{\text{DR}}] + 2\text{Cov}[N_{\text{DR}},N_{\text{CF}}]
+\end{align}
+\end{answer}
+From \eqref{eq:ret}, we see that the return realized at $t+1$ is only a function of $\varepsilon_{t+1}^d$ (an expectational error on dividend growth) and $v_{t+1}$ (an innovation to expected dividend growth). In other words, returns are not only not predictable, but only relate to the cash flow component (technically, the unforecastable component of cash flows). Intuitively, there is no discount rate news and all variation in the unexpected component of returns is due to news about cash flows.
+
+More formally, take conditional expectations of \eqref{eq:ret}
+\begin{align}
+    \mathbb{E}_{t-1} [r_{t}] = \mathbb{E}_{t-1} \left[ \varepsilon_{t}^{d}+\frac{\rho v_{t}}{1-\rho b}  \right] = 0
+\end{align}
+since $\varepsilon_{t+1}^d$ and $v_{t+1}$ are expectational errors. This means that $N_\text{CF}=0$ so
+\begin{align}
+    r_t - \mathbb{E}_{t-1} [r_t] = N_{\text{DR}}
+\end{align}
+and
+\begin{align}
+    \text{Var} \left[ r_t - \mathbb{E}_{t-1} [r_t] \right] = \text{Var} [N_\text{CF}].
+\end{align}
+
+%We can derive a closed-form expression for cash flow news:
+%\begin{align}
+%    \text{Var} [N_\text{CF}] &= \text{Var} \left[ (\mathbb{E}_t - \mathbb{E}_{t-1}) \sum_{j=0}^\infty \rho^j \Delta d_{t+j} \right] \\
+%    &= \text{Var} \left[ (\mathbb{E}_t - \mathbb{E}_{t-1})\Delta d_t + (\mathbb{E}_t - \mathbb{E}_{t-1}) \sum_{j=1}^\infty \rho^j \Delta d_{t+j}   \right] \\
+%    &= \text{Var} \left[ \varepsilon_{t}^d + \sum_{j=1}^\infty \rho^j (\mathbb{E}_t - \mathbb{E}_{t-1}) \mu_{t+j}  \right] \\
+%    &= \text{Var} \left[ \varepsilon_{t}^d + \sum_{j=1}^\infty \rho^j (\mathbb{E}_t - \mathbb{E}_{t-1}) \mu_{t+j}  \right] \\
+%\end{align}
+
+
+
+
+
+\begin{answer}[Part g]
+Please report the ratio of discount rate news to total return innovation variance that is implied by your estimates:
+\begin{align}
+    \frac{\text{Var}[N_{\text{DR}}]}{\text{Var}[r_t - \mathbb{E}_{t-1}[r_t]]}
+\end{align}
+\end{answer}
+It's zero since $\text{Var}[N_\text{DR}]=0$ from part f.
+
+\begin{answer}[Part h]
+Can you find parameter values that imply no dividend growth predictability in a forecasting regression of dividend growth on the log dividend yield?
+\end{answer}
+From \eqref{eq:1d} we have the regression of dividend growth on dividend yield
+\begin{align}
+    \Delta d_{t+1} &= a_d + b_d dp_t + u_{t+1}^d \\
+     b_d &= -(1-\rho b).
+\end{align}
+In order to have no dividend growth predictability form dividend yield, we need $b_d=0$ or $\rho b=1$ or, importantly, since $\rho <1$
+\begin{align}
+b=\frac{1}{\rho}>1.
+\end{align}
+This means that expected dividend growth is non-stationary and the cash flow process has an explosive variance. It also means that dividend yields are non-stationary, since from part c we have
+\begin{align}
+    dp_{t+1} &= \phi_0 + \phi_1 dp_t + v_{t+1} \\
+    \phi_1 &= b
+\end{align}
+and Campbell-Shiller relies crucially on a stationary price-dividend ratio.
